@@ -1,0 +1,443 @@
+{% extends "client_base.html" %}
+
+{% block main %}
+<style>
+  /* White color for table header text */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px; /* Add some padding to the sides for better spacing */
+  }
+
+  /* Table styles */
+  .tablesorter thead th,
+  .tablesorter tbody td {
+    color: #ffffff;
+    /* White color code */
+  }
+
+  .table-container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.5);
+  }
+
+  /* Card styles */
+  .card {
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.5);
+    margin-bottom: 20px;
+    margin-top: 120px;
+  }
+
+  /* Form styles */
+  form {
+    margin: 0; /* Remove default form margin */
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .content {
+      padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+  }
+
+  /* Social icons styles */
+  .socials {
+    position: fixed;
+    display: block;
+    left: 20px;
+    bottom: 20px;
+  }
+
+  .socials > a {
+    display: block;
+    width: 30px;
+    opacity: .2;
+    transform: scale(var(--scale, .8));
+    transition: transform .3s cubic-bezier(0.38, -0.12, 0.24, 1.91);
+  }
+
+  .socials > a:hover {
+    --scale: 1;
+  }
+
+  .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+/* Hide the default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: .4s;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+/* Rounded sliders - changing the background color when checked */
+.switch input:checked + .slider {
+  background-color: #ffc107;
+}
+
+/* Rounded sliders - adding a small thumb */
+.slider.round:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+/* Rounded sliders - moving the thumb when checked */
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Button */
+.submit-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffc107;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+.submit-btn:hover {
+  background-color: #ffaa00;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px; /* Add some padding to the sides for better spacing */
+  }
+
+  /* Table styles */
+  .tablesorter thead th,
+  .tablesorter tbody td {
+    color: #ffffff; /* White color code */
+  }
+
+  .table-container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.5);
+  }
+
+  /* Card styles */
+  .card {
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.5);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 1600;
+  }
+  .card-header h4 {
+    color: #ffc107; /* Golden color */
+    font-weight: bold; /* Bold text */
+  }
+  /* Form styles */
+  form {
+    margin: 0; /* Remove default form margin */
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .content {
+      padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+  }
+
+  /* Social icons styles */
+  .socials {
+    position: fixed;
+    display: block;
+    left: 20px;
+    bottom: 20px;
+  }
+
+  .socials > a {
+    display: block;
+    width: 30px;
+    opacity: .2;
+    transform: scale(var(--scale, .8));
+    transition: transform .3s cubic-bezier(0.38, -0.12, 0.24, 1.91);
+  }
+
+  .socials > a:hover {
+    --scale: 1;
+  }
+
+  /* Checkbox styles */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+  }
+
+  /* Hide the default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* Slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 20px;
+    transition: .4s;
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 20px;
+  }
+
+  /* Rounded sliders - changing the background color when checked */
+  .switch input:checked + .slider {
+    background-color: #ffc107;
+  }
+
+  /* Rounded sliders - adding a small thumb */
+  .slider.round:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+  }
+
+  /* Rounded sliders - moving the thumb when checked */
+  .switch input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+
+  /* Button */
+  .submit-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px; /* Rounded border */
+    background-color: #ffc107;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Shadow effect */
+  }
+
+  /* Button hover effect */
+  .submit-btn:hover {
+    background-color: #ffaa00;
+    transform: translateY(-2px); /* Lift the button slightly */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+  }
+    /* Power button */
+</style>
+
+<div class="content">
+  <div class="row justify-content-center"> <!-- Center the content within the row -->
+    <div class="col-md-6">
+      <form method="post" action="{% url 'client_dashboard' %}">
+        {% csrf_token %}
+        <table class="table tablesorter" id="signalsTable">
+          <!-- Table content -->
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Welcome To Finoways</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive table-container">
+            <form method="post" action="{% url 'client_dashboard' %}">
+              {% csrf_token %}
+              <table class="table tablesorter" id="signalsTable">
+                <thead class="text-primary">
+                  <tr>
+                    <th>NO</th>
+                    <th>SYMBOL</th>
+                    <th>QUANTITY</th>
+                    <th>SEGMENT</th>
+                    <th>ORDER TYPE</th>
+                    <th>TRADING</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Entry 1: COMEX, Limit Order -->
+                  <tr>
+                    <td>1</td>
+                    <td>XAUUSD</td>
+                    <td><input type="number" name="QUANTITY" value="0"></td>
+                    <td>COMEX</td>
+                    <td>
+                      <select name="ORDER_TYPE">
+                        <option value="Limit">Limit Order</option>
+                        <option value="Market">Market Order</option>
+                      </select>
+                    </td>
+                    <td><label class="switch"><input type="checkbox" name="TRADING"><span
+                          class="slider round"></span></label></td>
+                    <td><button type="submit" class="submit-btn">Submit</button></td> 
+                  </tr>
+                  <!-- Entry 2: COMEX, Market Order -->
+                  <tr>
+                    <td>2</td>
+                    <td>USOIL</td>
+                    <td><input type="number"></td>
+                    <td>COMEX</td>
+                    <td>
+                      <select name="ORDER_TYPE">
+                        <option value="Limit">Limit Order</option>
+                        <option value="Market" selected>Market Order</option>
+                      </select>
+                    </td>
+                    <td><label class="switch"><input type="checkbox" name="TRADING"><span
+                          class="slider round"></span></label></td>
+                    <td><button type="submit" class="submit-btn">Submit</button></td>
+                  </tr>
+                  <!-- Entry 3-5: FOREX, Limit Order -->
+                  <tr>
+                    <td>3</td>
+                    <td>EURUSD</td>
+                    <td><input type="number"></td>
+                    <td>FOREX</td>
+                    <td>
+                      <select name="ORDER_TYPE">
+                        <option value="Limit">Limit Order</option>
+                        <option value="Market">Market Order</option>
+                      </select>
+                    </td>
+                    <td><label class="switch"><input type="checkbox" name="TRADING"><span
+                          class="slider round"></span></label></td>
+                    <td><button type="submit" class="submit-btn">Submit</button></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>USDJPY</td>
+                    <td><input type="number"></td>
+                    <td>FOREX</td>
+                    <td>
+                      <select name="ORDER_TYPE">
+                        <option value="Limit">Limit Order</option>
+                        <option value="Market">Market Order</option>
+                      </select>
+                    </td>
+                    <td><label class="switch"><input type="checkbox" name="TRADING"><span
+                          class="slider round"></span></label></td>
+                    <td><button type="submit" class="submit-btn">Submit</button></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>GBPUSD</td>
+                    <td><input type="number"></td>
+                    <td>FOREX</td>
+                    <td>
+                      <select name="ORDER_TYPE">
+                        <option value="Limit">Limit Order</option>
+                        <option value="Market">Market Order</option>
+                      </select>
+                    </td>
+                    <td><label class="switch"><input type="checkbox" name="TRADING"><span
+                          class="slider round"></span></label></td>
+                    <td><button type="submit" class="submit-btn">Submit</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% if error %}
+<script>
+  alert('{{ error }}');
+</script>
+<script>
+  // JavaScript to handle button click and redirect
+  document.querySelectorAll('.submit-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      // Show success message
+      alert('Added successfully!');
+      // Redirect to the client dashboard page
+      window.location.href = "{% url 'client_dashboard' %}";
+    });
+  });
+</script>
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

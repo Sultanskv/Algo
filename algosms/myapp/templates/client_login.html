@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div{% if message.tags %} {% endif %} class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+{% endif %}
+
+<style>
+    body {
+        background-color: black;
+    }
+
+    .jumbotron {
+        background-color: rgb(0, 0, 0);
+        color: goldenrodblack;
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    .form-group label {
+        color: goldenrod;
+    }
+
+    .form-control {
+        background-color: black;
+        color: goldenrod;
+        border-color: goldenrod;
+    }
+
+    .form-control::placeholder {
+        color: goldenrod;
+    }
+
+    .btn-primary {
+        background-color: goldenrod;
+        border-color: goldenrod;
+    }
+
+    .btn-primary:hover {
+        background-color: #ffd700; /* Lighter shade of goldenrod */
+        border-color: #ffd700;
+    }
+
+    /* Style for logo */
+    .logo-img {
+        max-width: 200px; /* Set maximum width */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Center the image */
+        margin: 0 auto;
+    }
+    
+</style>
+
+<div class="jumbotron" style="width: 40%; text-align: center; margin: 75px auto;">
+    <h1 class="display-6"><img src="/static/finowayslogo.png" alt="Logo" class="logo-img"></h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="user_id">Email ID</label>
+            <input type="email" name="email" class="form-control" placeholder="Enter emailid">
+            <small id="emailHelp" class="form-text text-muted">Use the client id & password given by Admin.</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Enter password">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Logged In Successful');
+    // window.location = ('{% url 'client_dashboard' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Invalid Login Credentials, Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}
