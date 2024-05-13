@@ -1,1 +1,1 @@
-# Algo
+pip install django
