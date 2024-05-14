@@ -21,7 +21,7 @@ def logoutUser(request):
     logout(request)
     return redirect('client_login')
 
-@login_required
+# @login_required
 def client_login(request):
     error = ""
     if request.method == 'POST':
