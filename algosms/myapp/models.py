@@ -35,17 +35,17 @@ import uuid
     #     return user
 
 
-class Account(AbstractBaseUser):
-    user_id = models.IntegerField(verbose_name="user_id",  unique=True, primary_key=True)
-    is_client = models.BooleanField(default=False)
-    is_client = models.BooleanField(default=False)
-    email = models.EmailField(blank=True,null=True,verbose_name='email')
-    date_joined				= models.DateTimeField(verbose_name='date joined', auto_now_add=True)
-    last_login				= models.DateTimeField(verbose_name='last login', auto_now=True)
-    is_admin				= models.BooleanField(default=False)
-    is_active				= models.BooleanField(default=True)
-    is_staff				= models.BooleanField(default=False)
-    is_superuser			= models.BooleanField(default=False)
+# class Account(AbstractBaseUser):
+#     user_id = models.IntegerField(verbose_name="user_id",  unique=True, primary_key=True)
+#     is_client = models.BooleanField(default=False)
+#     is_client = models.BooleanField(default=False)
+#     email = models.EmailField(blank=True,null=True,verbose_name='email')
+#     date_joined				= models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+#     last_login				= models.DateTimeField(verbose_name='last login', auto_now=True)
+#     is_admin				= models.BooleanField(default=False)
+#     is_active				= models.BooleanField(default=True)
+#     is_staff				= models.BooleanField(default=False)
+#     is_superuser			= models.BooleanField(default=False)
 
 
     # USERNAME_FIELD = 'user_id'

@@ -354,8 +354,6 @@
         Status</a>
       <a href="{% url 'client_help' %}" class="{% if request.path == '/client_help/' %}active{% endif %}">Help
         Center</a>
-      <a href="#" data-toggle="modal" data-target="#profileModal" class="{% if request.path == '/profile/' %}active{% endif %}">Profile</a>
-        <!-- Add the Pay Now option here -->
       <a href="https://buy.stripe.com/00g5mN93d1Xu4KIdQZ" class="pay-now">Pay Now</a>
       <a href="#" data-toggle="modal" data-target="#profileModal"
         class="{% if request.path == '/profile/' %}active{% endif %}">Profile</a>
@@ -415,7 +413,7 @@
             
             <!-- Move Logout and Change Password options here -->
             <div class="options">
-              <a href="{% url 'index' %}">Logout</a>
+              <a href="{% url 'client_login' %}">Logout</a>
               <a href="{% url 'change_password' %}">Change Password</a>
             </div>
           </form>
@@ -426,7 +424,7 @@
   <div class="power-button" id="powerButton">
     <i class="fas fa-power-off"></i> <!-- Font Awesome power icon -->
   </div>
-  <script>
+  <!-- <script>
     // JavaScript to handle button functionality
     const powerButton = document.getElementById('powerButton');
 
@@ -456,7 +454,7 @@
         window.location.href = "{% url 'multibank' %}";
       }
     });
-  </script>
+  </script> -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>

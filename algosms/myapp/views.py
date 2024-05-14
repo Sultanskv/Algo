@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect , HttpResponse
 from .forms import ClientLogin
-from .models import Account
+
 from .forms import *
 from django.contrib.auth import authenticate,login,logout
 from datetime import datetime
@@ -21,19 +21,20 @@ def logoutUser(request):
     logout(request)
     return redirect('client_login')
 
-# @login_required
 def client_login(request):
     error = ""
     if request.method == 'POST':
         u = request.POST['email']
         p = request.POST['password']
-        user = authenticate(username=u,password=p)
-        if user:
-            login(request,user)
+        user = authenticate(request, username=u, password=p)
+        if user is not None:
+            login(request, user)
             error = "no"
+            return redirect('client_dashboard')
         else:
-            error = "yes"    
-    return render(request,'client_login.html', locals())
+            error = "yes"
+            messages.error(request, 'Invalid Login Credentials, Try Again...')
+    return render(request, 'client_login.html', {'error': error})
      
 
 
